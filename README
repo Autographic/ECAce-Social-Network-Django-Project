@@ -1,0 +1,14 @@
+This is the ECAce academic social network project.
+
+We are developing this as a resource for ENCS (Engineering and Compter Science) 
+students at Concordia University in Montreal, Quebec. We have chosen open source 
+development, as our developer team is 100% volunteer and because we're using 
+an open source framework (Django) to create the project.
+
+It consists of several main applications:
+base - the most generic sections; login/logout, extensin of sites.site, etc.
+concordia - models specifically based on Concordia's needs and academic structure.
+humanity - an application for dealing with people in, well, a human fashion.
+magazine - an engine for publishing pretty content, with help from Photologue for images.
+society - an engine for managing engineering society websites and internal documentation.
+competition - an engine for intercollegiate competitions.
