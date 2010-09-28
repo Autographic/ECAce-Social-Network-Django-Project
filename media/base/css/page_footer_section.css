@@ -1,0 +1,29 @@
+#footer {
+	margin:0; border:0;
+	padding:1pc 0;
+	background:black;
+	color:white;
+	font-size:10pt;
+}
+#footer h1 {
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14pt;
+	font-weight: bold;
+}
+#footer h1 div a{
+	color:#8b181a;
+	text-decoration:none;
+}
+#footer div.back-to-top-link {
+	text-align:center;
+}
+
+#footer ul.societies_directory {
+	margin:0;padding:0;border:0;
+}
+#footer-eca-logo {
+	padding-right: 20px;
+	padding-top: 6px;
+}
+#footer a { color: #ffc427; }
+

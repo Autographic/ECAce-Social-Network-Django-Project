@@ -1,0 +1,15 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block userlinks %}{% trans 'Registration Form' %} / <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="../../">{% trans 'Home' %}</a> &rsaquo; {% trans 'Account created.' %}</div>{% endblock %}
+
+{% block title %}{% trans 'Your GCEngineers Account has been created.' %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans 'Your GCEngineers Account has been created' %}</h1>
+
+<p>{% trans 'Thanks! Your account has been created, but not activated yet.' %}</p>
+<p>{% trans 'Please check your email and follow the instructions on the message sent by the server.' %}</p>
+
+{% endblock %}

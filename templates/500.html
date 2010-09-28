@@ -1,0 +1,24 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block pretitle %}
+Error 500: Internal server error.
+{% endblock pretitle %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans "Home" %}</a> &rsaquo; {% trans "Server error" %}</div>{% endblock %}
+
+{% block content %}
+<h1>I'm sorry, Dave, but I can't do that.</h1>
+
+<p>Hmm! Something has gone wrong in my code.</p>
+<p>All apologies! A notification with details of the error has been sent to 
+our enormous batcave coding complex deep beneath the Bannex.</p>
+
+
+<table><thead><tr><th>Request Contents</th></tr></thead>
+<tbody>
+{% for item in request %}
+	<tr>{{item}}</tr>
+{% endfor %}
+</tbody></table>
+
+{% endblock content %}

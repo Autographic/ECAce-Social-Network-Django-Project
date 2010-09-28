@@ -1,0 +1,13 @@
+#header {
+	background:#ffc427 url("img/header_bkg.jpg") no-repeat;
+}
+#branding {
+}
+#user-menu {
+}
+#nav-global {
+}
+#nav-global li {
+}
+.breadcrumbs {
+}

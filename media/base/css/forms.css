@@ -1,0 +1,16 @@
+table.formtable {
+}
+table.formtable tr {
+	vertical-align:top;
+}
+.formtable label {
+	color:#444;
+	text-align:right;
+}
+.formtable tbody th {
+	text-align:right;
+}
+.formtable tbody td {
+	font-size:10pt;
+	color:#444;
+}

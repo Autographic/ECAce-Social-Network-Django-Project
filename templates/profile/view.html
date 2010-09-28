@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}&rsaquo; <a href="/profile/">Profile</a>
+{% if title %} &rsaquo; {{ title }}{% endif %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+<h1 id="whoami">{{ site_user.whoami }}
+{% if own_profile %}
+{% if site_user.student %}
+	<a id="editthispage" href="/profile/edit/student/">[ edit ]</a>
+{% else %}
+	<a id="editthispage" href="/profile/edit/professional/">[ edit ]</a>
+{% endif %}
+{% else %}
+	{% if site_user in user.friends %}
+	<a href="defriend/{{ site_user.user.username }}/" id="defriend">Defriend</a>
+	{% else %}
+	<a href="befriend/{{ site_user.user.username }}/" id="defriend">Befriend</a>
+	{% endif %}
+{% endif %}</h1>
+<h4 id="motd">{{ site_user.motd }}</h4>
+
+<h3>About Me</h3>
+<div id="about_me">{{ site_user.about_me|safe|linebreaks }}</div>
+
+{% if site_user.friends %}
+<h3>Friends</h3>
+<table>
+<thead><tr><th>Friends</th></tr></thead>
+{% for friend in site_user.friends.all %}
+	<tr>
+		<th><a href="{{ friend.absolute_url }}">{{friend}}</a></th>
+{#		<td><a href="/befriend/{{ friend.user.username }}/">+ Befriend</a></td> #}
+		<td><a href="/defriend/{{ friend.user.username }}/">&ndash; Defriend</a></td>
+	</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if professional %}
+<h2>Professional Profile</h2>
+<p>I work at <a href="{{ professional.employer.absolute_url }}" target="_new">{{ professional.employer }}</a>.
+Including me, there are {{ professional.employer.employees.count }} GCEngineers members from {{ professional.employer }}.</p>
+{% endif %}
+
+{% if student %}
+<h2>Educational Profile</h2>
+<h4 class="institution">{{ student.school }}</h4>
+<h4 class="discipline">{{ student.program }}</h4>
+<p>Including me, there are {{ student.school.students.count }} GCEngineers members from {{ student.school }}.</p>
+<div id="education_profile">{{ student.education_profile|safe|linebreaks }}</div>
+
+{% endif  %}
+
+
+{% endblock content %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/profile.css" />
+{% endblock extrastyle %}
+
+{% comment %}
+about_me  	Text  	about me - Unlimited length. Tell us about yourself.
+friends.all 	List 	
+
+all related socialnetwork.GCEngineersUser objects
+friends.count 	Integer 	
+
+number of related socialnetwork.GCEngineersUser objects
+id 	Integer 	ID
+interested_in.all 	List 	
+
+all related socialnetwork.Discipline objects
+interested_in.count 	Integer 	
+
+number of related socialnetwork.Discipline objects
+motd 	String (up to 140) 	motd - Your Message Of The Day.
+professional.all 	List 	
+
+all related socialnetwork.Professional objects
+professional.count 	Integer 	
+
+number of related socialnetwork.Professional objects
+siteuser_ptr 	SiteUser 	
+
+the related base.SiteUser object
+student.all 	List 	
+
+all related socialnetwork.Student objects
+student.count 	Integer 	
+
+number of related socialnetwork.Student objects
+user 	User 	
+
+the related auth.User object
+whoami 	HumanBeing 	
+
+the related humanity.HumanBeing object
+
+{% endcomment %}
+

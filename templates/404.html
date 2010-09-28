@@ -1,0 +1,19 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block pretitle %}
+<h4 class="error">Error 404: File or object not found.</h4>
+{% endblock pretitle %}
+
+{% block content %}
+<h1>Sorry, what was that <em>Mrs.</em> Mxyzptlk you were looking for?</h1>
+
+<p>Seriously, the page you just asked for doesn't exist.</p>
+<script type="text/javascript">
+  var GOOG_FIXURL_LANG = 'en/CA';
+  var GOOG_FIXURL_SITE = 'http://ecaconcordia.ca/'
+</script>
+<script type="text/javascript"
+  src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js">
+</script>
+{% endblock content %}
+

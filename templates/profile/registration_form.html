@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block userlinks %}{% endblock %}
+{% block breadcrumbs %} &rsaquo; {% trans 'Create Account' %}{% endblock %}
+
+{% block title %}{% trans 'Create ECAce Account' %}{% endblock %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+<table>
+<thead>
+<tr><th colspan="2">About You</th></tr>
+</thead><tbody>
+{{ form1.as_table }}
+</tbody><thead>
+<tr><th colspan="2">Concordia Profile Info</th></td>
+</thead><tbody>
+{{ form2.as_table }}
+{{ form3.as_table }}
+<tr><td claspan="2"><input type="submit" value="{% trans 'Request new account' %}" /></td></tr>
+</tbody>
+</table>
+</form>
+{% endblock content %}

@@ -1,0 +1,114 @@
+@import url("columns.css");
+
+html {
+	height:100%;
+	
+	margin:0; padding:0; border:0;
+	
+	background:#444 url(img/page_bkg.png) repeat-x;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12pt;
+}
+body {
+	display:block;
+	width:1012px;
+	height:auto;
+	min-height:100%;
+	
+	margin:0 auto;
+	padding:0; border:0;
+	
+	background:transparent url(img/page_shadow.png) repeat-y;
+}
+#container {
+	display:block;
+	width:1000px;
+	height:100%;
+	min-height:100%;
+	position:relative;
+	
+	background:white;
+	
+	margin:0 auto;
+	padding:0; border:0;
+}
+
+/* page_header_section basic style */
+#header {
+	margin:0; padding:0; border:0;
+}
+#branding {
+	text-align:right;
+}
+#user-menu {
+	background:#eee;
+	margin:0; padding:0; border:0;
+	height:18px;
+}
+#nav-global {
+	margin:0; padding:0; border:0;
+	background: #ccc;
+	list-style-type: none;
+	height:18px;
+}
+#nav-global li {
+	display:inline;
+}
+.breadcrumbs {
+	margin:0; padding:0; border:0;
+	background:white;
+	border-bottom: 1px solid #444;
+}
+
+/* page_content_section basic style */
+#content_wrapper {
+	margin:0; border:0;
+	padding:0 1pc;
+	position:relative;
+}
+#sidebar {
+	margin:0; padding:0; border:0;
+	display:block;
+	width: 144px;
+	height:auto;
+	min-height:288px;
+	position:absolute;
+	top:0;
+	right:-156px;
+	
+	background:white;
+}
+#pretitle {
+	font-family: Georgia, Times, serif;
+	font-style:italic;
+	font-size:small;
+	margin:0;
+	paddong:0 1pc;
+}
+
+/* page_footer_section basic style */
+#footer {
+	margin:0; padding:0; border:0;
+	background:#888;
+}
+
+/* Basic Entity Defintions */
+h1,h2,h3,h4,h5,h6 {
+	font-family: Georgia, Times, serif;
+	margin-bottom:6px;
+	margin-top:0;
+}
+
+a { color: #ffc427; }
+a:link, a:visited {
+	text-decoration:none;
+}
+a:active, a:hover {
+	text-decoration:underline;
+}
+
+
+/* Generic entities */
+.clear { clear:both; }
+.clear-left { clear:left; }
+.clear-right { clear:right; }

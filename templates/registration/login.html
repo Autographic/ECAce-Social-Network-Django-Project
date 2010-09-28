@@ -1,0 +1,17 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+
+{% if form.errors %}
+{% block errors %}<li>Sorry, the username and password didn't match our records.</li>{% endblock errors %}
+{% endif %}
+
+{% block content %}
+<h1>{% trans "Log in" %}</h1>
+
+<form method="post">{% csrf_token %}
+{{ form.as_p }}
+<p><input type="submit" value="{% trans 'Log in' %}" /></p>
+</form>
+{% endblock content %}
+
+

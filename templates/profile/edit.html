@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+<table class="formtable">
+<thead>
+<tr><th colspan="2">Edit your profile</th></tr>
+</thead>
+<tbody>
+    {% for field in form %}
+{% if field.errors %}        <tr class="error"><td colspan="2">{{ field.errors }}</td></tr>{% endif %}
+	<tr class="{% cycle 'odd' 'even' %}">
+		<th><label for="id_{{ field.name }}">{{ field.label_tag }}</label></th>
+		<td>{{ field }}</td>
+        </tr>
+    {% endfor %}
+<tr><td align="center" colspan="2"><input type="image" src="{{ MEDIA_URL }}img/Web-Application-Icons-Set/PNG-48/Save.png" name="Upload Schedule" width="48" height="48" alt="Upload My Schedule" />
+</tbody>
+</table>
+
+{% endblock content %}
+
+{% block extrabasestyle %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/forms.css" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/forms/profile.css" />
+{% endblock extrabasestyle %}

@@ -1,0 +1,13 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
+<h1>Publications</h1>
+
+<ul>
+{% for pub in publications %}
+	<li><a href="{{pub.slug}}">{{ pub.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}
+
+

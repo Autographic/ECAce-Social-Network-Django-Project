@@ -1,0 +1,37 @@
+
+/* 4-column layout, 1000px total width, 12px margin, 12px gutter */
+.column_holder {
+	margin:0 -10px;
+}
+.one_column,.two_column,.three_column,.four_column {
+	display:block;
+	margin:0 12px;
+	float:left;
+	clear:none;
+}
+
+.one_column { width:223px; }
+.two_column { width:482px; }
+.three_column { width:730px; }
+.four_column { width:976px; }
+
+.first_column { float:left; margin-right:0; }
+.last_column { float:right; margin-left:0; }
+
+.space_1_column {
+	margin-left: 243px;
+}
+
+.floating_column {
+	float:right;
+	margin-right:0;
+	margin-bottom:12px;
+	padding:12px;
+	background: #ddd;
+}
+.one_column.floating_column { width:223px; }
+.two_column.floating_column { width:470px; }
+.three_column.floating_column { width:703px; }
+
+.two_column.first_column,
+.two_column.last_column { width:470px; }

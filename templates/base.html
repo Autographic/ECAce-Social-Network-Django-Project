@@ -1,0 +1,65 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{% if title %}{{ title }} | {% endif %}{% block site_title_suffix %}{% endblock site_title_suffix %}</title>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" />
+{% block extrabasestyle %}{% endblock extrabasestyle %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/overlay_styles.css" />
+
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/skins/gce/skin_styles.css" />
+
+{% if skin %}<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/skins/{{ skin.slug }}/skin_styles.css" />
+{% endif %}
+{% block extrastyle %}{% endblock extrastyle %}
+{#<script type="text/javascript">window.__admin_media_prefix__ = "{{ admin_media_prefix }}";</script>#}
+{% block extrahead %}{% endblock extrahead %}
+</head>
+
+<body>
+<a name="main"></a>
+<div id="container">
+	<div id="header">
+		<div id="user-menu">
+		{% if user.is_authenticated %}
+			Welcome, <strong>{% firstof person.given_name user.first_name user.username %}.</strong>
+			<a href="/accounts/settings/">Account Settings</a>
+			<a href="/accounts/logout/">Log out</a>
+		{% else %}
+			{% block user-menu_greeting %}Welcome!{% endblock user-menu_greeting %}
+			<a href="/signup/">Sign up now!</a>
+			<a href="/accounts/login/">Log in</a>
+		{% endif %}
+		</div><!-- /#user-menu -->
+		<ul id="nav-global">
+			<li><a href="/">Home</a></li>
+{% if user.is_authenticated %}			<li><a href="/profile/">Profile</a></li>
+{% block user-menu_site %}{% endblock user-menu_site %}
+		</ul><!-- /#nav-global -->
+	</div><!-- /#header -->
+	<div class="breadcrumbs"><a href="/">Home</a>{% block breadcrumbs %}{% if title %} &rsaquo; {{ title }}{% endif %}{% endblock breadcrumbs %}</div><!-- /#breadcrumbs -->
+<!-- end % if not is_popup % -->
+{% if messages %}	<div id="server_messages">
+	<h4>Server Messages</h4>
+        <ul class="message_list">
+{% for message in messages %}
+		<li>{{ message }}</li>{% endfor %}
+	</ul><!-- /.message_list -->
+	</div><!-- /#server_messages -->{% endif %}
+	<div id="content_wrapper">
+		<div id="content">
+			{% if pretitle %}<div id="pretitle">{{ pretitle }}</div><!-- /#pretitle -->{% endif %}
+			{% if title %}<div id="content_title">
+				<h1>{{ title }}</h1>
+			</div><!-- content_title -->{% endif %}
+			{% block content %}{{ content|linebreaks|safe }}{% endblock content %}
+		</div>
+		{% if sidebar %}<div id="sidebar">{{ sidebar|safe }}</div><!-- /#sidebar -->{% endif %}
+		<br class="clear" />
+	</div><!-- /#content_wrapper -->
+	<div id="footer">
+<div class="clear back-to-top-link"><a href="#main">Back to top</a></div>
+	</div><!-- /#footer -->
+</div><!-- /#container -->
+</body>
+</html>

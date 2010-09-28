@@ -1,0 +1,7 @@
+{% load i18n %}
+{# AJAX username availablility feedback widget #}
+{% if user_available %}
+<div class='success'>{% trans 'Username is available.' %}</div>
+{% else %}
+<div class='error'>{% trans 'Username is taken, try another.' %}</div>
+{% endif %}

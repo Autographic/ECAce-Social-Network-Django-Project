@@ -1,0 +1,66 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
+<p>The contents of the issue go here ( this is boilerplate )</p>
+
+<h1>{{ issue.title }}</h1>
+
+<div class="issue_content">
+{{ issue.intro }}
+
+<table>
+<thead><tr><th>Contents</th></tr>
+</thead>
+<tbody>
+{% for article in articles %}
+	<tr class="{% cycle 'odd' 'even' %}"><td><a href="{{ article.id }}/">{{ article.title }}</a></td></tr>
+{% endfor %}
+</tbody>
+</table>
+{{ issue.outro }}
+</div>
+{% endblock content %}
+
+
+{% block extrabasestyle %}
+THIS IS A STYLESHEET LINK
+{% endblock extrabasestyle %}
+
+{% comment %}
+ARTICLE FIELDS
+approved	Boolean (Either True or False)	approved - Check this when the item has been polished into an un-turd-like gem.
+author	String (up to 64)	author - The author's name as printed.
+bodytext_cooked	Text	bodytext cooked - Final edited copy goes here, while the original supplied message is preserved.
+bodytext_input	Text	bodytext input - Please enter the test of your message here. Format as you wish, but remember some people receive plain text and for those users markup will be stripped out.
+end_date	Date (without time)	end date - What date do you wish to stop promoting your item?
+id	Integer	ID
+publication	Publication	
+the related magazine.Publication object
+- Which publication does this article belong in?
+start_date	Date (without time)	start date - What date do you wish to start promoting your item? If unspecified, we'll start ASAP.
+subarticles.all	List	
+all related magazine.SubArticle objects
+subarticles.count	Integer	
+number of related magazine.SubArticle objects
+subtitle	String (up to 256)	subtitle - Optional. If you want to add a sub-heading for more context, do so here.
+title	String (up to 128)	title - The title. You know, THE FRICKIN TITLE.
+weight	Integer
+
+
+
+ISSUE FIELDS 
+Field	Type	Description
+date	Date (without time)	date - The publication date for this newsletter.
+deadline	Date (without time)	deadline - The last submissions (barring exceptional circumstances) must be received before midnight on this date.
+id	Integer	ID
+intro	Text	intro - This is the introductory text, printed before the news items and included in the email.
+number	Integer	number - The issue number in this publication.
+outro	Text	outro - This is the summary and signoff text, added after the news items.
+publication	Publication	
+the related magazine.Publication object
+- Which publication does this issue belong to?
+title	String (up to 128)	title - The subject line of the email, and the title of this issue.
+‹ Back to Models Documentation
+
+
+{% endcomment %}

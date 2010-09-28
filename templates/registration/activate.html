@@ -1,0 +1,15 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block userlinks %}{% trans 'Registration Form' %} / <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="../../">{% trans 'Home' %}</a> &rsaquo; {% trans 'Account activation failed.' %}</div>{% endblock %}
+
+{% block title %}{% trans "Account activation failed." %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Oh noes! The account activation didn't work." %}</h1>
+
+<p>{% trans "Your account activation code did not work." %}</p>
+<p>{% trans "Please verify the code sent in the email. You entered this code:" %} <strong>{{ activation_key }}</strong></p>
+
+{% endblock %}

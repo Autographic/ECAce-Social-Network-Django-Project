@@ -1,0 +1,88 @@
+#header {
+	margin:0; border:0; padding:0;
+	background:#ffc427;
+	height:250px;
+	font-size:10pt;
+	text-align:right;
+}
+#user-menu {
+	margin:0; border:0;
+	padding:0 1pc;
+	background: transparent url("img/user-menu_bkg.png") no-repeat;
+	height:18px;
+	text-align:right;
+	color:white;
+}
+#user-menu a {
+	font-weight:bold;
+	padding-left:1pc;
+}
+#user-menu a:link,
+#user-menu a:visited {
+	color: #666;
+}
+#user-menu a:active,
+#user-menu a:hover {
+	color: #ffc427;
+	text-decoration: none;
+}
+#branding {
+	margin:0; padding:0; border:0;
+	text-align:right;
+	background:#ffc427;
+}
+#branding img {
+	margin:0; padding:0; border:0;
+	margin-bottom:31px;
+	margin-top:38px;
+}
+#nav-global { /* ul */
+	margin:0; border:0;
+	padding:0 1pc;
+	background: transparent url("img/nav-global_bkg.png") no-repeat;
+	list-style-type: none;
+	height:36px;
+	text-align:center;
+	font-family:Georgia,Times,serif;
+	font-size:14pt;
+	font-weight:bold;
+}
+#nav-global ul {
+	padding-top:12px;
+}
+#nav-global li {
+	display:inline;
+}
+#nav-global li a:link,
+#nav-global li a:visited {
+	padding:9px 1em;
+	color:#ffc427;
+}
+#nav-global li a:active,
+#nav-global li a:hover {
+	padding:9px 1em;
+	color:#8b181a;
+	background: transparent url("img/nav-global_link_hilite.png") center;
+}
+.breadcrumbs {
+	margin:0; border:0;
+	padding:2px 1pc;
+	background:white url("img/breadcrumbs_bkg.png") repeat-x;;
+	border-bottom: 1px solid #444;
+}
+#server_messages {
+	margin:0 1pc 6pt;
+	padding:6pt;
+	border-bottom:3px double #888;
+	background: #ddd;
+}
+#server_messages h4 {
+	margin:0; padding:0; border:0;
+	color:#444;
+}
+#server_messages ul.message_list {
+	
+}
+#server_messages li {
+	
+}

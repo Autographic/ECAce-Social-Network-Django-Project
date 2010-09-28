@@ -1,0 +1,13 @@
+{% load i18n %}
+{% trans "Welcome to ECAce!" %}
+
+{% trans "Your account has been created, but needs to be activated." %}
+
+{% trans "You have one week from the time this message is sent to activate the account." %}
+
+{% trans "It's easy to do so -- just click on this link:" %}
+
+http://{{ site.domain }}/user/activate/{{ activation_key }}/
+
+Merci beaucoup!
+{% trans "The ECAce development team" %}

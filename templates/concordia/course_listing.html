@@ -1,0 +1,107 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block content %}
+<div class="column_holder">
+<div class="three_column first_column">
+	<p>Here&rsquo;s a listing of the courses in the ENCS calendar, according to the registrar&rsquo;s website.
+	So if you just can&rsquo;t remember what <a href="#ENGR361">ENGR 361</a> is, then just search for the course code
+	and pretend you didn&rsquo;t just have an enormous brain-fart.</p>
+	<p>But there&rsquo;s more to it than that. <a href="#the_cool_stuff">Click here to read about The Cool Stuff!</a></p>
+</div>
+<div class="one_column last_column">
+	<h4>Program Shortcuts</h4>
+	<p>Click on a link to get the courses for that program:</p>
+	<ul>
+	{% for prog_code in program_code_list %}
+		<li><a href="#{{prog_code}}">{{prog_code}}</a></li>
+	{% endfor %}
+	</ul>
+</div>
+<hr class="clear" />
+	<div class="one_column first_column">
+		{% for coursetable in first_column %}{{ coursetable|safe }}{% endfor %}
+	</div>
+	<div class="column_holder two_column">
+		<div class="one_column first_column">
+			{% for coursetable in second_column %}{{ coursetable|safe }}{% endfor %}
+		</div>
+		<div class="one_column last_column">
+			{% for coursetable in third_column %}{{ coursetable|safe }}{% endfor %}
+		</div>
+	</div>
+	<div class="one_column last_column">
+		{% for coursetable in fourth_column %}{{ coursetable|safe }}{% endfor %}
+	</div>
+</div>
+
+<hr class="clear" />
+<a name="the_cool_stuff"></a><h2>Okay, so what?</h2>
+<div class="column_holder">
+<div class="two_column first_column">
+	<p>Well, while we are proud of our screen-scraping feat (thanks, 
+	<a href="http://registrar.concordia.ca/calendar/71/sec71.html" target="_new">registrar.concordia.ca</a>!)
+	we do admit it is, in and of itself, <em>slightly</em> useless. Unless, of course, you consider that 
+	all of that information is now resident on our database!</p>
+	<p>Not thrilled to bits yet? Well, then, try this out. It is kind of complicated,
+	we are going to find a more streamlined way to do this, but this IS just a beta
+	so please bear with us for now.</p>
+</div>
+<div class="two_column last_column">
+	<p>Log onto <a href="http://myconcordia.ca" target="_new">MyConcordia</a>, go to your
+	class schedule, then scroll down to the bottom of the page where it says in little 
+	invisible micro-print, <span style="font-size:7pt;">Click <u>here</u> for a different display.</span>
+	(no, the word "here" doesn&rsquo;t work on our page, or else we&rsquo;d shorten these instructions a whole lot).
+	Anyhow, click on the stupid tiny link and get the alternative version of your schedule:
+	the one that lists the professors as well.</p>
+	<p>Got that onscreen? Great. Right-click on that schedule frame, and save the page to your hard disk.
+	I promise you, this is going to get cool really soon now.</p>
+</div>
+<div class="four_column">
+	<h2>The Cool Stuff!</h2>
+	<div class="two_column floating_column">
+		<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+		<table>
+		<thead>
+		<tr><th colspan="2">Share Your Class Schedule! Find Your Classmates!</th></tr>
+		</thead>
+		<tbody>
+{{ form.as_table }}
+		<tr><td align="center" colspan="2"><input type="image" src="{{ MEDIA_URL }}img/Web-Application-Icons-Set/PNG-48/Save.png" name="Upload Schedule" width="48" height="48" alt="Upload My Schedule" />
+		</tbody>
+		</table>
+		<p>Attach the HTML you saved from MyConcordia, click the checkbox under the form, and click the save icon. Note: You can ALSO upload future terms, or past terms if you really want to. And, if your schedule still has Professor T.B.A. listed, you can upload a new schedule anytime to update your records!</p>
+		</form>
+	</div>
+	<p>Okay, so what&rsquo;s the point of this whole exercise? It&rsquo;s pretty straightforward. 
+	It can be kind of hard to get in touch with your classmates, which can be a real PITA when you need to get in touch with them for your term project or lab report. Moodle tries its best, but in the humble opinion of this developer it still sucks. However, if you and your classmates upload your schedules, you&rsquo;ll be able to send them messages from the system; you&rsquo;ll have a more accurate list of who&rsquo;s who (since we keep track of not only your course sections but also the lab and tutorial sections, and our profile design includes a space for a photo BIGGER than a postage stamp).</p>
+	</div>
+</div>
+<h3 class="clear">&ldquo;ECAce: A Portal That Doesn&rsquo;t Suck&rdquo;</h3>
+{% endblock content %}
+
+{% block extrahead %}
+<style type="text/css">
+h3 {
+	border-bottom:3px double #ffc427;
+	margin-top: 2pc;
+	color:#ffc427;
+	background:#8b181a;
+	text-align: center;
+}
+h5 {
+	padding-top:1em;
+	border-bottom:1px solid #444;
+}
+h5 .credits {
+	font-size: 9pt;
+	font-weight: light;
+	font-style: italic;
+	color: #444;
+	float:right;
+}
+#content .one_column p {
+	font-size: 9pt;
+	margin-top:0;
+}
+</style>
+{% endblock extrahead %}

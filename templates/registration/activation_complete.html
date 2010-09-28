@@ -1,0 +1,17 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+{% block userlinks %}{% trans 'Account activated' %} / <a href="/user/logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="../../">{% trans 'Home' %}</a> &rsaquo; {% trans 'Account activated.' %}</div>{% endblock %}
+
+{% block title %}{% trans 'Your account has been activated.' %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans 'Ready to rip!' %}</h1>
+
+<p>{% trans 'Thanks! Your account has been activated.' %}</p>
+<p>{% trans 'You may wish to create your ECAce profile now.' %}<a href="/profile/edit">{% trans "It's right here." %}</a></p>
+
+<h3>Welcome, and have fun!</h3>
+
+{% endblock %}

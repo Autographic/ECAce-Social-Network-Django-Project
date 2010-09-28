@@ -1,0 +1,1 @@
+{% load i18n %}{% trans "Activation code for ECAce.ca" %}
