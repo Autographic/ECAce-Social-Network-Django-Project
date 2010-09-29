@@ -15,7 +15,12 @@ urlpatterns = patterns('',
     url(r'^signup/$', signup ),
     #url(r'^signup/personal/$', signup_personal ),
     #url(r'^signup/concordia/$', signup_concordia ),
-
+    
+    url(r'^profile/$', 'concordia.views.profile.view'),
+    url(r'^profile/view/(?P<username>[^/]+)/$', 'concordia.views.profile.view'),
+    url(r'^profile/search/$', 'concordia.views.profile.search'),
+    url(r'^profile/edit/$', 'concordia.views.profile.edit'),
+    
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

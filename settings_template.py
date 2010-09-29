@@ -138,6 +138,10 @@ INSTALLED_APPS = (
     #'%s.blog' % PROJECT_NAME, # Why not?
 )
 
+FIXTURES_DIRECTORIES = (
+	'%s/fixtures/' % PROJECT_ROOT,
+)
+
 # Date formatting
 DATETIME_FORMAT = 'N j, Y'
 MONTH_DAY_FORMAT = 'N j'
