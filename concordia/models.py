@@ -18,6 +18,7 @@ class Building(models.Model):
 	code = models.CharField (
 		max_length = 3,
 		help_text = "The letter designating the building, i.e. H for the Hall Building.",
+		
 	)
 	notes = models.TextField (
 		help_text = "Any comments on this building, e.g. how to find CB.",
@@ -218,9 +219,11 @@ class Concordian (models.Model):
 	"Custom user-level data"
 	user = models.OneToOneField( User, 
 		null=True, # for pre-creating Student objects
+		related_name = "profile",
 	)
 	whoami = models.OneToOneField ( HumanBeing,
 		null=True, # for pre-creating Student objects
+		related_name = "profile",
 	)
 	whoami.verbose_name_plural = 'whoarewe'
 		

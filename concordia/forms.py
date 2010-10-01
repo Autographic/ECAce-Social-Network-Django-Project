@@ -25,8 +25,13 @@ class StudentForm(forms.ModelForm):
 		model = Student
 
 class StudentIDForm(forms.Form):
-	student_id = forms.IntegerField()
-	
+	student_id = forms.RegexField( r'^\d{7}$',
+		help_text = "Your 7-digit Concordia student ID number.",
+	)
+	family_name = forms.CharField ( 
+		max_length = 32,
+		help_text = "Enter your family name ('last name') here to confirm your ID.",
+	)
 	def clean_student_id(self):
 		value = self.cleaned_data['student_id']
 		try:

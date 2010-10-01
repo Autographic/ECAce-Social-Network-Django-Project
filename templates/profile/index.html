@@ -1,32 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base_site.html' %}
 
 {% block content %}
-
-<h2>Professionals</h2>
-{% if user.site_user.professional %}
-<div><a href="/profile/edit/professional/">Edit Your Professional Profile</a></div>
-{% else %}
-<div><a href="/profile/create/professional/">Add Your Professional Profile</a></div>
-{% endif %}
-{% if professionals %}
-<table>
-<thead>
-<tr>
-	<th>Name</th>
-	<th>Organization</th>
-</tr>
-</thead>
-<tbody>
-{% for p in professionals %}
-	<td><a href="{{ p.absolute_url }}">{{ p.whoami }}</a></td>
-	<td><a href="{{ p.organization.absolute_url }}">{{ p.organization }}</a></td>
-{% endfor %}
-</tbody>
-</table>
-{% else %}
-<h4>Sorry, our users are completely unprofessional! :-(</h4>
-<p><em>Of course, this would be a more serious tone. </em></p>
-{% endif %}
 
 <h2>Students</h2>
 {% if user.site_user.student %}

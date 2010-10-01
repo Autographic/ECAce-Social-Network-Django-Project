@@ -71,6 +71,16 @@ class HumanBeing(models.Model):
 	@property
 	def sorting_name(self):
 		return self.name.sorting
+	@property
+	def full_name(self):
+		return self.name.full
+	@property
+	def given_name(self):
+		return self.name.given
+	@property
+	def family_name(self):
+		return self.name.family
+		
 
 class HumanName(models.Model):
 	"A human has formal, informal, and casual names: more than one, in short."
@@ -111,6 +121,7 @@ class HumanName(models.Model):
 	
 	def __unicode__(self): return self.sorting()
 	
+	@property
 	def formal(self):
 		# gather the (potential) pieces
 		if self.name_schema_family_last:
@@ -124,7 +135,23 @@ class HumanName(models.Model):
 		
 		# Note: this can be written in one line:
 		#return u' '.join( [ pt for pt in ( self.first, self.middle, self.last ) if len(pt) ] )
+
+	@property
+	def full(self):
+		# gather the (potential) pieces
+		if self.name_schema_family_last:
+			parts = [ self.given, self.middle, self.family, ]
+		else:
+			parts = [ self.family, self.middle, self.middle, ]
+		# filter empty parts
+		parts = [ pt for pt in parts if len(pt) ]
+		# join them into a Unicode string
+		return u' '.join( parts )
+		
+		# Note: this can be written in one line:
+		#return u' '.join( [ pt for pt in ( self.first, self.middle, self.last ) if len(pt) ] )
 	
+	@property
 	def informal(self):
 		# gather the (potential) pieces
 		if self.name_schema_family_last:
@@ -136,6 +163,7 @@ class HumanName(models.Model):
 		# join them into a Unicode string
 		return u' '.join( parts )
 	
+	@property
 	def sorting(self):
 		# gather the (potential) pieces
 		parts = [ self.family, self.given, ]
@@ -144,5 +172,6 @@ class HumanName(models.Model):
 		# join them into a Unicode string
 		return u', '.join( parts )
 	
+	@property
 	def casual(self): return self.given
 

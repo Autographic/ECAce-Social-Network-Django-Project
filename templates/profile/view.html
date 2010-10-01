@@ -1,102 +1,114 @@
-{% extends 'base.html' %}
+{% extends 'profile/base.html' %}
 
-{% block breadcrumbs %}&rsaquo; <a href="/profile/">Profile</a>
-{% if title %} &rsaquo; {{ title }}{% endif %}
-{% endblock breadcrumbs %}
 
 {% block content %}
-<h1 id="whoami">{{ site_user.whoami }}
+<h1 id="whoami">{{ profile.whoami.name.full }}</h1>
+<div>
 {% if own_profile %}
-{% if site_user.student %}
-	<a id="editthispage" href="/profile/edit/student/">[ edit ]</a>
+	<a id="editthispage" href="/profile/edit/">[ edit ]</a>
 {% else %}
-	<a id="editthispage" href="/profile/edit/professional/">[ edit ]</a>
-{% endif %}
-{% else %}
-	{% if site_user in user.friends %}
-	<a href="defriend/{{ site_user.user.username }}/" id="defriend">Defriend</a>
+	{% if profile in profile.network %}
+	<a href="defriend/{{ profile.user.username }}/" id="defriend">Defriend</a>
 	{% else %}
-	<a href="befriend/{{ site_user.user.username }}/" id="defriend">Befriend</a>
+	<a href="befriend/{{ profile.user.username }}/" id="befriend">Befriend</a>
 	{% endif %}
-{% endif %}</h1>
-<h4 id="motd">{{ site_user.motd }}</h4>
+{% endif %}</div>
+
+<h4>Message of the Day</h4>
+<div id="motd">{{ profile.motd }}</div>
 
 <h3>About Me</h3>
-<div id="about_me">{{ site_user.about_me|safe|linebreaks }}</div>
+<div id="about_me">{{ profile.about_me|safe|linebreaks }}</div>
 
-{% if site_user.friends %}
-<h3>Friends</h3>
+{% if profile.network.count %}
+<h3>Network</h3>
 <table>
-<thead><tr><th>Friends</th></tr></thead>
-{% for friend in site_user.friends.all %}
+<thead><tr><th colspan="2" align="center">{{ profile.whoami.name.casual }} has {{ profile.network.count }} friends.</th></tr></thead>
+<tbody>{% comment %}
+{% for friend in profile.network.all %}
 	<tr>
 		<th><a href="{{ friend.absolute_url }}">{{friend}}</a></th>
-{#		<td><a href="/befriend/{{ friend.user.username }}/">+ Befriend</a></td> #}
+		<td><a href="/befriend/{{ friend.user.username }}/">+ Befriend</a></td>
 		<td><a href="/defriend/{{ friend.user.username }}/">&ndash; Defriend</a></td>
 	</tr>
-{% endfor %}
+{% endfor %}{% endcomment %}
+</tbody>
 </table>
-{% endif %}
-
-{% if professional %}
-<h2>Professional Profile</h2>
-<p>I work at <a href="{{ professional.employer.absolute_url }}" target="_new">{{ professional.employer }}</a>.
-Including me, there are {{ professional.employer.employees.count }} GCEngineers members from {{ professional.employer }}.</p>
 {% endif %}
 
 {% if student %}
 <h2>Educational Profile</h2>
-<h4 class="institution">{{ student.school }}</h4>
-<h4 class="discipline">{{ student.program }}</h4>
-<p>Including me, there are {{ student.school.students.count }} GCEngineers members from {{ student.school }}.</p>
-<div id="education_profile">{{ student.education_profile|safe|linebreaks }}</div>
 
+{% if student.courses.count %}
+<h4>Courses</h4>
+{% for course in student.courses.all %}
+<div>{{ course }}</div>
+{% endfor %}
+{% endif %}
+{% if student.eca_role.count %}
+	{% if student.eca_role.count > 1 %}
+	<h4>ECA Roles</h4>
+	<ul>
+	{% for role in student.eca_roles.all %}
+		<li>{{ role }}</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<h4>ECA Roles</h4>
+	<ul>
+		<li>{{ student.eca_roles.all.0 }}</li>
+	</ul>
+	{% endif %}
+{% endif %}
 {% endif  %}
 
 
 {% endblock content %}
 
-{% block extrastyle %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/profile.css" />
-{% endblock extrastyle %}
-
 {% comment %}
-about_me  	Text  	about me - Unlimited length. Tell us about yourself.
-friends.all 	List 	
-
-all related socialnetwork.GCEngineersUser objects
-friends.count 	Integer 	
-
-number of related socialnetwork.GCEngineersUser objects
-id 	Integer 	ID
-interested_in.all 	List 	
-
-all related socialnetwork.Discipline objects
-interested_in.count 	Integer 	
-
-number of related socialnetwork.Discipline objects
-motd 	String (up to 140) 	motd - Your Message Of The Day.
-professional.all 	List 	
-
-all related socialnetwork.Professional objects
-professional.count 	Integer 	
-
-number of related socialnetwork.Professional objects
-siteuser_ptr 	SiteUser 	
-
-the related base.SiteUser object
-student.all 	List 	
-
-all related socialnetwork.Student objects
-student.count 	Integer 	
-
-number of related socialnetwork.Student objects
-user 	User 	
-
-the related auth.User object
-whoami 	HumanBeing 	
-
-the related humanity.HumanBeing object
+concordian	Concordian	the related concordia.Concordian object
+eca_role.all	List	all related concordia.AssociationStaff objects
+eca_role.count	Integer	number of related concordia.AssociationStaff objects
+id	Integer	ID
+lab_attendance.all	List	all related concordia.LabAttendance objects
+lab_attendance.count	Integer	number of related concordia.LabAttendance objects
+labs.all	List	all related concordia.LabSchedule objects
+labs.count	Integer	number of related concordia.LabSchedule objects
+last_year_registered	Integer	last year registered - This school year -- assuming you're registered!
+lecture_attendance.all	List	all related concordia.LectureAttendance objects
+lecture_attendance.count	Integer	number of related concordia.LectureAttendance objects
+lectures.all	List	all related concordia.LectureSchedule objects
+lectures.count	Integer	number of related concordia.LectureSchedule objects
+program	String (up to 4)	program - Which program are you enrolled in?
+program_year	Integer	program year - Which year of your program are you in?
+student_id	Integer	student id
+tutorial_attendance.all	List	all related concordia.TutorialAttendance objects
+tutorial_attendance.count	Integer	number of related concordia.TutorialAttendance objects
+tutorials.all	List	all related concordia.TutorialSchedule objects
+tutorials.count	Integer	 number of related concordia.TutorialSchedule objects
+{% endcomment %}
+{% comment %}
+network.all	List	all related concordia.Concordian objects
+network.count	Integer	number of related concordia.Concordian objects
+about_me	Text	about me - Unlimited length, basic HTML allowed.
+avatar_set.all	List	all related concordia.Avatar objects
+avatar_set.count	Integer	number of related concordia.Avatar objects
+hometown	String (up to 128)	hometown - Optional. Whare are you from?
+id	Integer	ID
+interested_in.all	List	all related concordia.Discipline objects
+interested_in.count	Integer	number of related concordia.Discipline objects
+motd	String (up to 140)	MOTD - Message of the day: Tweet length (140 characters).
+network.all	List	all related concordia.Concordian objects
+network.count	Integer	number of related concordia.Concordian objects
+professor.all	List	all related concordia.Professor objects
+professor.count	Integer	number of related concordia.Professor objects
+student.all	List	all related concordia.Student objects
+student.count	Integer	number of related concordia.Student objects
+t_shirt_size	String (up to 4)	t shirt size - Optional. But if you fill this in we can automatically choose your size from The Store, and maybe you'll get a surprise gift from a secret admirier!
+teaching_assistant.all	List	all related concordia.TeachingAssistant objects
+teaching_assistant.count	Integer	number of related concordia.TeachingAssistant objects
+user	User	the related auth.User object
+whoami	HumanBeing	the related humanity.HumanBeing object
 
 {% endcomment %}
 

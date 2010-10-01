@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 import views
-from socialnetwork.concordia.views import signup
+#from socialnetwork.concordia.views import signup
 
 urlpatterns = patterns('',
     # Example:
@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     url(r'^login/', views.login ),
     url(r'^logout/$', views.logout ),
     url(r'^logout_verification/$', views.logout_verification ),
-    url(r'^signup/', signup ),
+#    url(r'^signup/', signup ),
 )
