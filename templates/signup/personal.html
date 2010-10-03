@@ -1,0 +1,13 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+<h4>Welcome!</h4>
+
+<p>The next step is to create your basic profile information.</p>
+
+<form method="POST">{% csrf_token %}
+<table>
+{{ form.as_table }}
+<tr><td></td><td><input type="submit" value="Create Account" /></td></tr>
+</table></form>
+{% endblock content %}

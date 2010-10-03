@@ -1,0 +1,10 @@
+{% extends 'base_site.html' %}
+
+{% block breadcrumbs %} &rsaquo; <a href="/profile/">Profile</a>
+{% if title %} &rsaquo; {{ title }}{% endif %}
+{% endblock breadcrumbs %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/profile.css" />
+{% endblock extrastyle %}
+

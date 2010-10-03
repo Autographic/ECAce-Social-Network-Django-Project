@@ -31,20 +31,23 @@ class HumanBeingForm(forms.ModelForm):
 	``RegistrationProfile.objects.create_inactive_user()``.
 
 	"""
-	gender = forms.ChoiceField( choices = GENDERS, required=False, label=u'gender' )
-	birthdate = forms.DateField( required=False, label=u'birthdate' )
+	gender = forms.ChoiceField( choices = GENDERS, required=False, label=u'Your gender' )
+	birthdate = forms.DateField( 
+		required = False, label=u'Birthdate', 
+		help_text = "Optional, but maybe you'll get a birthday surprise if you tell.",
+	)
 
 	family_name = forms.CharField (
 		help_text = 'Your family or "last" name.',
-		label = 'family name',
+		label = u'Family name',
 	)
 	given_name = forms.CharField (
 		help_text = 'Your given or "first" name.',
-		label = 'given name',
+		label = u'Given name',
 	)
 	name_schema_family_last = forms.BooleanField ( initial = True,
 		help_text = "If you write your family name after your own name, keep this checked.",
-		label = 'name ordering',
+		label = u'Family name last',
 	)
 
 	def clean_gender(self):
@@ -54,7 +57,7 @@ class HumanBeingForm(forms.ModelForm):
 		value = self.cleaned_data['gender']
 		if not value: return None # not a required field
 		try:
-			return Gender.objects.get( label__iexact=value )
+			return Gender.objects.get( abbrev__iexact=value )
 		except Gender.DoesNotExist:
 		    raise forms.ValidationError(u'Invalid gender code "%s". If you take issue with this, please email marketing.director@ecaconcordia.ca for assistance.' % value )
 		
@@ -64,7 +67,7 @@ class HumanBeingForm(forms.ModelForm):
 		"""
 		value = self.cleaned_data['birthdate']
 		if not value: return None # not a required field
-		max_value = datetime.date.today() - datetime.timedelta( int(25*365.24) ) # Surely everyone's at least 15.
+		max_value = datetime.date.today() - datetime.timedelta( int(15*365.24) ) # Surely everyone's at least 15.
 		min_value = datetime.date.today() - datetime.timedelta( 36524 ) # Centenarians are welcome, however, should they wish to attend.
 		if value < min_value or value > max_value:
 		    raise forms.ValidationError(u'Invalid age (%s). If you take issue with this, please email marketing.director@ecaconcordia.ca for assistance.' % value )
@@ -113,14 +116,15 @@ class HumanBeingForm(forms.ModelForm):
 		
 		"""
 		human = HumanBeing.people.create(
-			gender = self.gender,
-			birthdate = self.birthdate,
+			gender = self.cleaned_data['gender'],
+			birthdate = self.cleaned_data['birthdate'],
 		)
 		human.name.create (
-			given_name = self.given_name,
-			family_name = self.family_name,
-			name_schema_family_last = self.name_schema_family_last,
+			given_name = self.cleaned_data['given_name'],
+			family_name = self.cleaned_data['family_name'],
+			name_schema_family_last = self.cleaned_data['name_schema_family_last'],
 		)
+		human.save()
 		return human
 
 

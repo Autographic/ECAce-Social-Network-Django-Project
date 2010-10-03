@@ -1,0 +1,119 @@
+[
+	{
+		"pk": 1,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "ENGR",
+			"name": "engineering",
+			"parent": 1
+		}
+	},
+	{
+		"pk": 2,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "BCE",
+			"name": "building and civil engineering",
+			"parent": 1
+		}
+	},
+	{
+		"pk": 21,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "BLDG",
+			"name": "building engineering",
+			"parent": 2
+		}
+	},
+	{
+		"pk": 22,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "CIVI",
+			"name": "civil engineering",
+			"parent": 2
+		}
+	},
+	{
+		"pk": 3,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "ECE",
+			"name": "electrical and computer engineering",
+			"parent": 1
+		}
+	},
+	{
+		"pk": 31,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "ELEC",
+			"name": "electrical engineering",
+			"parent": 3
+		}
+	},
+	{
+		"pk": 32,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "COMP",
+			"name": "computer engineering",
+			"parent": 3
+		}
+	},
+	{
+		"pk": 4,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "CSE",
+			"name": "computer sciance and software engineering",
+			"parent": 1
+		}
+	},
+	{
+		"pk": 41,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "CSCI",
+			"name": "computer science",
+			"parent": 4
+		}
+	},
+	{
+		"pk": 42,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "SOFT",
+			"name": "software engineering",
+			"parent": 31
+		}
+	},
+	{
+		"pk": 5,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "MIE",
+			"name": "mechanical and industrial engineering",
+			"parent": 1
+		}
+	},
+	{
+		"pk": 51,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "MECH",
+			"name": "mechanical engineering",
+			"parent": 5
+		}
+	},
+	{
+		"pk": 52,
+		"model": "concordia.discipline",
+		"fields": {
+			"code": "INDU",
+			"name": "mechanical engineering",
+			"parent": 5
+		}
+	}
+]

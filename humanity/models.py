@@ -1,6 +1,10 @@
 from django.db import models
 from constants import *
 
+def create_human(family_name, given_name='' ):
+	human = HumanBeing.objects.create()
+	
+	
 class Gender(models.Model):
 	abbrev = models.CharField (
 		max_length=2, 
@@ -20,6 +24,30 @@ class Gender(models.Model):
 			qs.create( abbrev = FEMALE, label = 'female' )
 			qs.create( abbrev = MALE, label = 'male' )
 	
+	@property
+	def is_male(self):
+		return self.abbrev.lower() =='m'
+	@property
+	def is_female(self):
+		return self.abbrev.lower() =='f'
+	@property
+	def is_complicated(self):
+		return self.abbrev.lower() =='c'
+
+	@classmethod
+	def get_male(cls):
+		return cls.objects.get( abbrev__lower ='m' )
+	@classmethod
+	def get_female(cls):
+		return cls.objects.get( abbrev__lower ='f' )
+	@classmethod
+	def get_complicated(cls):
+		return cls.objects.get( abbrev__lower ='c' )
+	@classmethod
+	def get_for(cls,value):
+		v = value[0].lower()
+		return cls.objects.get( abbrev__lower = v )
+	
 	def __unicode__(self): return self.label
 
 class MaleManager(models.Manager):
@@ -34,9 +62,8 @@ class FemaleManager(models.Manager):
 class HumanBeing(models.Model):
 	"A creature of subspecies Homo sapiens sapiens."
 	# name -> HumanName instance for flexibility
-	gender = models.CharField (
-		max_length = 1, null = True, blank = True,
-		choices = GENDERS,
+	gender = models.ForeignKey ( Gender,
+		null = True, blank = True,
 		help_text = "Optional. Your gender.",
 	)
 	birthdate = models.DateField (
@@ -48,20 +75,21 @@ class HumanBeing(models.Model):
 	@property
 	def gender_possessive(self,language='en'):
 		s = "their"
-		if self.gender=='M': s = "his"
-		if self.gender=='F': s = "her"
+		if self.gender.is_male: s = "his"
+		if self.gender.is_female: s = "her"
 		return s
 	
 	@property
 	def gender_pronoun(self,language='en'):
 		s = "they"
-		if self.gender=='M': s = "he"
-		if self.gender=='F': s = "she"
+		if self.gender.is_male: return u"he"
+		if self.gender.is_female: return u"she"
 		return s
 
 	men = MaleManager()
 	women = FemaleManager()
 	people = models.Manager()
+	objects = models.Manager() # It's nothing personal, really. Just for coding convenience. :-)
 	
 	def __unicode__(self):
 		try:

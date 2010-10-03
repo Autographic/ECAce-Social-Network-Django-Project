@@ -1,59 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
-from socialnetwork.humanity.models import HumanBeing
+from socialnetwork.concordia.constants import *
+from socialnetwork.academics import get_current_school_year
 from photologue.models import ImageModel
-import datetime, random
-from constants import *
-from utils import *
+import datetime, random, hashlib
 
-
-######### Physical Plant
-
-class Building(models.Model):
-	campus = models.CharField (
-		max_length = 3,
-		choices = CAMPUSES,
-		help_text = "SGW (Downtown) or Loyola?",
-	)
-	code = models.CharField (
-		max_length = 3,
-		help_text = "The letter designating the building, i.e. H for the Hall Building.",
-		
-	)
-	notes = models.TextField (
-		help_text = "Any comments on this building, e.g. how to find CB.",
-		blank = True,
-	)
-	
-	# classrooms -> Classroom
-	def __unicode__(self):
-		return u'%s building [%s]' % ( self.code, self.campus )
-
-class Classroom(models.Model):
-	building = models.ForeignKey ( Building,
-		related_name = "classrooms",
-		help_text = "The building containing this classroom.",
-	)
-	number = models.CharField (
-		max_length = 8,
-		help_text = "The room number; e.g. 407 for SGW H-407.",
-	)
-	notes = models.TextField (
-		help_text = "Any comments on this room.",
-		blank = True,
-	)
-	
-	# Related Fields
-	# class_sections -> ecace.courses.models.academic.CourseSection
-	# lab_sections -> ecace.courses.models.academic.LabSection
-	# tutorial_sections -> ecace.courses.models.academic.TutorialSection
-
-	def __unicode__(self):
-		return u'[%s] %s-%s' % ( self.building.campus, self.building.code, self.number, )
-
-
-
-######### Academics
+# NOTE: DEPENDENCY ON PROFILE MODULE, IT MUST LOAD FIRST
+from socialnetwork.profile.models import *
 
 class Discipline(models.Model):
 	"An engineering field."
@@ -71,18 +23,13 @@ class Discipline(models.Model):
 		help_text = "Define a tree of disciplines here.",
 		null=True, blank=True,
 	)
-	def __unicode__(self): return self.name
+	def __unicode__(self): return self.name.capitalize()
 
 class SchoolYear(models.Model):
 	year = models.PositiveSmallIntegerField (
 		default = get_current_school_year(),
 		help_text = "Nominal value.",
 	)
-	# Related fields
-	# semesters ->
-	# students ->
-	# professors ->
-	# teaching_assistants ->
 	
 	def __unicode__(self):
 		return u'School Year %d' % self.year
@@ -91,8 +38,6 @@ class SchoolYear(models.Model):
 	def current(cls):
 		"Returns the current SchoolYear object."
 		return cls.objects.get( year = _get_current_school_year() )
-
-
 
 class Semester(models.Model):
 	"""A division of the school year.
@@ -120,12 +65,6 @@ class Semester(models.Model):
 		help_text = "The last day of class.",
 	)
 	
-	# Related fields
-	# courses -> Course through CourseSemester
-	# my_courses -> #### MANAGER INSTANCE
-	# students ->
-	# professors ->
-	# teaching_assistants ->
 	
 	@property
 	def class_week ( self, which_date = datetime.date.today() ):
@@ -169,13 +108,7 @@ class Course(models.Model):
 		help_text = "D-Day.",
 		blank = True, null = True,
 	)
-	
-	# Related fields
-	# semester -> Courses this semester
-	# registrations -> Registration objects to Students
-	# professors -> Professor objects
-	# sections -> Section objects
-	
+		
 	def __unicode__(self):
 		return "%s%d: %s [%.2f credits]" % (
 			self.code, self.number, self.name, self.credits,
@@ -212,133 +145,7 @@ class CourseSemester(models.Model):
 		return "%s (%s)" % ( self.course, self.semester, )
 
 
-
-######## People
-
-class Concordian (models.Model):
-	"Custom user-level data"
-	user = models.OneToOneField( User, 
-		null=True, # for pre-creating Student objects
-		related_name = "profile",
-	)
-	whoami = models.OneToOneField ( HumanBeing,
-		null=True, # for pre-creating Student objects
-		related_name = "profile",
-	)
-	whoami.verbose_name_plural = 'whoarewe'
-		
-	# Profile fields
-	motd = models.CharField (
-		max_length = 140,
-		help_text = "Message of the day: Tweet length (140 characters).",
-		blank = True,
-	)
-	motd.verbose_name = 'MOTD'
-	motd.verbose_name_plural = 'MOTDen'
-	about_me = models.TextField (
-		help_text = "Unlimited length, basic HTML allowed.",
-		blank = True,
-	)
-	interested_in = models.ManyToManyField ( Discipline,
-		related_name = 'interested_users',
-		null = True, blank = True,
-		help_text = "What engineering fields interest you?",
-	)
-	network = models.ManyToManyField ("self",
-		blank = True,
-	)
-	t_shirt_size = models.CharField (
-		blank = True,
-		max_length = 4, # up to XXXL
-		choices = T_SHIRT_SIZES,
-		help_text = "Optional. But if you fill this in we can automatically choose your size from The Store, and maybe you'll get a surprise gift from a secret admirier!",
-	)
-	hometown = models.CharField (
-		max_length = 128,
-		blank = True,
-		help_text = "Optional. Whare are you from?",
-	)
-	"Concordian API definition"
-	@property
-	def get_student(self):
-		"Returns the studentitious profile, or None."
-		try: 
-			return self.student
-		except AttributeError: 
-			return None
-	@property
-	def get_professor(self):
-		"Returns the professorial profile, or None."
-		try:
-			return self.professor
-		except AttributeError:
-			return None
-	@property
-	def get_teaching_assistant(self):
-		"Returns the TA profile, or None."
-		try:
-			return self.teaching_assistant
-		except AttributeError: 
-			return None
-	@property
-	def get_eca_role(self):
-		"Returns the student's ECA role, or None."
-		try: 
-			return self.eca_role
-		except AttributeError: 
-			return None
-	
-	def __unicode__(self): return unicode(self.whoami)
-
-class Student(models.Model):
-	concordian = models.OneToOneField ( Concordian,
-		related_name = "student",
-	)
-	student_id = models.IntegerField (
-		unique = True,
-	)
-	program = models.CharField (
-		max_length = 4,
-		choices = ENCS_PROGRAMS,
-		help_text = "Which program are you enrolled in?",
-		blank=True,
-	)
-	program_year = models.PositiveSmallIntegerField (
-		null = True, blank = True,
-		choices = PROGRAM_YEARS,
-		help_text = "Which year of your program are you in?",
-	)
-	last_year_registered = models.PositiveIntegerField (
-		null = True, blank = True,
-		help_text = "This school year -- assuming you're registered!",
-	)
-	def __unicode__(self): return unicode(self.concordian.whoami)
-
-class Professor(models.Model):
-	concordian = models.OneToOneField ( Concordian,
-		related_name = "professor",
-	)
-	program = models.CharField (
-		max_length = 4,
-		choices = ENCS_PROGRAMS,
-		help_text = "Which program do you teach in?",
-		blank=True,
-	)
-	def __unicode__(self): return unicode(self.concordian.whoami)
-
-class TeachingAssistant(models.Model):
-	concordian = models.OneToOneField ( Concordian,
-		related_name = "teaching_assistant",
-	)
-	program = models.CharField (
-		max_length = 4,
-		choices = ENCS_PROGRAMS,
-		help_text = "Which program do you teach in?",
-		blank=True,
-	)
-	def __unicode__(self): return unicode(self.concordian.whoami)
-
-
+from constants import ATTENDANCE_KEY_LENGTH, ATTENDANCE_KEY_LETTERS
 
 
 ##### Sections are sets of students taking a course from a professor, etc.
@@ -492,41 +299,6 @@ class TutorialAttendance(SessionAttendance):
 	def __unicode__(self): return u'%s %s' % ( self.session, self.student, )
 
 
-
-
-
-##### Profile extensions
-class AssociationStaff(models.Model):
-	"An ECA official"
-	student = models.OneToOneField ( Student,
-		related_name = "eca_role",
-		help_text = "The student holding this role.",
-	)
-	role = models.CharField (
-		max_length = 32,
-		help_text = "Your role in the ECA."
-	)
-	class Meta:
-		verbose_name_plural = verbose_name = "ECA Staff"
-	
-	# String representation
-	def __unicode__(self):
-		name = self.student.concordian.whoami.sorting_name
-		return u'%s (%s)'% ( name, self.role, )
-
-
-##### Profile enhancements
-class Avatar(ImageModel):
-	profile = models.ForeignKey ( Concordian,
-	)
-	caption = models.CharField (
-		max_length = 256,
-		blank = True,
-	)
-	active = models.BooleanField ( 
-		default = True,
-		help_text = "Deselect this to make your picture private.",
-	)
 
 
 
