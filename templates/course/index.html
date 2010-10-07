@@ -1,0 +1,16 @@
+{% extends "course/base.html" %}
+
+{% block content %}
+<table>
+<tr valign="top">
+{% for col in courses %}
+<td>
+{% for course in col %}
+<div>{{ course }}</div>
+{% endfor %}
+</td>
+{% endfor %}
+</tr>
+</table>
+{% endblock content %}
+

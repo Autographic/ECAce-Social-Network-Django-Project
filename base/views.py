@@ -18,15 +18,6 @@ from django.contrib.auth.views import login as auth_login
 #from models import *
 #from forms import *
 
-def username_available(request,username):
-	"AJAX username validator"
-	c = RequestContext(request)
-	try:
-		User.objects.get(username=username)
-		c['user_available'] = False
-	except User.DoesNotExist:
-		c['user_available'] = True
-	return render_to_response('profile/registration_form.html', context_instance = c )
 
 def login(request):
 	return auth_login(request)

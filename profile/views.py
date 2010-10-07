@@ -16,4 +16,25 @@ from socialnetwork.humanity.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-def 
+def view_own(request):
+	"Profile viewer"
+	return view(request,user=request.user)
+
+def view(request, username=None, user=None ):
+	"Profile viewer"
+	if username:
+		user = User.objects.get(username)
+	else:
+		assert(user)
+		
+	raise NotImplementedError
+
+def search(request):
+	"Profile search engine"
+	raise NotImplementedError
+
+def edit(request):
+	"Profile editor page"
+	raise NotImplementedError
+
+

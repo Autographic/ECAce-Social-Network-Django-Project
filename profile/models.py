@@ -1,6 +1,12 @@
 from django.db import models
 
-from socialnetwork.concordia.models import 
+from humanity.models import HumanBeing
+from academics.models import *
+from store.models import TeeShirtSize
+from django.contrib.auth.models import User
+from photologue.models import ImageModel
+
+from constants import *
 
 class Concordian (models.Model):
 	"Custom user-level data"
@@ -34,10 +40,8 @@ class Concordian (models.Model):
 	network = models.ManyToManyField ("self",
 		blank = True,
 	)
-	t_shirt_size = models.CharField (
-		blank = True,
-		max_length = 4, # up to XXXL
-		choices = T_SHIRT_SIZES,
+	t_shirt_size = models.ForeignKey ( TeeShirtSize,
+		blank = True, null=True,
 		help_text = "Optional. But if you fill this in we can automatically choose your size from The Store, and maybe you'll get a surprise gift from a secret admirier!",
 	)
 	hometown = models.CharField (
