@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0"><object pk="2" model="base.socialnetworksite"><field type="CharField" name="slug">ecace</field><field type="CharField" name="media_url">http://media.ecace.autographic.ca/base/</field><field type="CharField" name="slogan">An academic social network for ENCS students.</field></object></django-objects>

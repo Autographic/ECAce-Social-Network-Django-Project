@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+	<object pk="ENGR" model="academics.discipline">
+		<field type="CharField" name="name">Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel"><None></None></field>
+	</object>
+	<object pk="BCE" model="academics.discipline">
+		<field type="CharField" name="name">Building, Civil and Environmental Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENGR</field>
+	</object>
+	<object pk="BLDG" model="academics.discipline">
+		<field type="CharField" name="name">Building Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCE</field>
+	</object>
+	<object pk="CIVI" model="academics.discipline">
+		<field type="CharField" name="name">Civil Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCE</field>
+	</object>
+	<object pk="ECE" model="academics.discipline">
+		<field type="CharField" name="name">Electrical and Computer Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENGR</field>
+	</object>
+	<object pk="ELEC" model="academics.discipline">
+		<field type="CharField" name="name">Electrical Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ECE</field>
+	</object>
+	<object pk="COMP" model="academics.discipline">
+		<field type="CharField" name="name">Computer Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ECE</field>
+	</object>
+	<object pk="CSE" model="academics.discipline">
+		<field type="CharField" name="name">Computer Science and Software Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENGR</field>
+	</object>
+	<object pk="CSCI" model="academics.discipline">
+		<field type="CharField" name="name">Computer Science</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">CSE</field>
+	</object>
+	<object pk="SOFT" model="academics.discipline">
+		<field type="CharField" name="name">Software Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">CSE</field>
+	</object>
+	<object pk="MIE" model="academics.discipline">
+		<field type="CharField" name="name">Mechanical and Industrial Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENGR</field>
+	</object>
+	<object pk="MECH" model="academics.discipline">
+		<field type="CharField" name="name">Mechanical Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">MIE</field>
+	</object>
+	<object pk="INDU" model="academics.discipline">
+		<field type="CharField" name="name">Industrial Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">MIE</field>
+	</object>
+	<object pk="1" model="academics.schoolyear">
+		<field type="PositiveSmallIntegerField" name="year">2010</field>
+	</object>
+	<object pk="1" model="academics.semester">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field type="PositiveSmallIntegerField" name="semester_code">2</field>
+		<field type="DateField" name="start">2010-09-07</field>
+		<field type="DateField" name="end">2010-12-06</field>
+		<field type="DateField" name="exam_start">2010-12-08</field>
+		<field type="DateField" name="exam_end">2010-12-22</field>
+	</object>
+	<object pk="2" model="academics.semester">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field type="PositiveSmallIntegerField" name="semester_code">3</field>
+		<field type="DateField" name="start">2010-09-07</field>
+		<field type="DateField" name="end">2011-04-09</field>
+		<field type="DateField" name="exam_start">2011-04-11</field>
+		<field type="DateField" name="exam_end">2011-05-02</field>
+	</object>
+	<object pk="3" model="academics.semester">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field type="PositiveSmallIntegerField" name="semester_code">4</field>
+		<field type="DateField" name="start">2011-01-03</field>
+		<field type="DateField" name="end">2011-04-09</field>
+		<field type="DateField" name="exam_start">2011-04-11</field>
+		<field type="DateField" name="exam_end">2011-05-02</field>
+	</object>
+</django-objects>
