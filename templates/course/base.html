@@ -1,2 +1,7 @@
 {% extends "base_site.html" %}
 
+<div class="breadcrumbs"><a href="/">Home</a>{% block breadcrumbs %}
+ &laquo; <a href="/course/">Course Pages</a>
+{% if discipline %} &laquo; <a href="/course/{{ discipline.code }}/">{{ discipline.name }}</a>{% endif %}
+{% endblock breadcrumbs %}</div>
+

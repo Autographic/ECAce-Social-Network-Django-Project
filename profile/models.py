@@ -1,8 +1,8 @@
 from django.db import models
 
-from humanity.models import HumanBeing
-from academics.models import *
-from store.models import TeeShirtSize
+from socialnetwork.humanity.models import HumanBeing
+from socialnetwork.academics.models import *
+from socialnetwork.store.models import TeeShirtSize
 from django.contrib.auth.models import User
 from photologue.models import ImageModel
 
@@ -78,6 +78,11 @@ class Concordian (models.Model):
 			return self.eca_role
 		except AttributeError: 
 			return None
+	
+	@classmethod
+	def get_from_request(cls,request):
+		"Get profile for the current user"
+		return cls.objects.get(user=request.user)
 	
 	def __unicode__(self): return unicode(self.whoami)
 

@@ -147,7 +147,7 @@ class HumanName(models.Model):
 		help_text = "Does your family name appear before your given name in your complete neme? Deselect this.",
 	)
 	
-	def __unicode__(self): return self.sorting()
+	def __unicode__(self): return self.sorting
 	
 	@property
 	def formal(self):

@@ -9,7 +9,7 @@ DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 # Record this project's root in the filesystem
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 # Record this project's name
-PROJECT_NAME = PROJECT_ROOT.replace('/','')
+PROJECT_NAME = PROJECT_ROOT.split('/')[-1]
 
 # Determine if this is the development or deployment version
 # (Development version is placed in the filesystem root in the socialnetwork directory)
@@ -28,16 +28,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'sqlite.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    },
-}
+from settings_database import DATABASES
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,15 +60,14 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = 'http://media.ecace.autographic.ca/base/'
 if IS_DEV_SERVER:
 	MEDIA_URL = 'http://ecace/media_socialnetwork/base/'
-else:
-	MEDIA_URL = 'http://media.ecace.autographic.ca/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = 'http://media.ecace.autographic.ca/admin/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'v-*=tgb2l#%9bkf_1ix0m=g5*wdyf6tk+t+22s%n13nnuq5nhp'
@@ -95,6 +85,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = '%s.urls' % PROJECT_NAME
@@ -126,19 +118,28 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.flatpages',
     'photologue','tagging',
     'registration','profiles', # Django extensions
 
     '%s.base' % PROJECT_NAME, # Site configuration
     '%s.humanity' % PROJECT_NAME, # HumanBeing, HumanName
-    '%s.concordia' % PROJECT_NAME, # Concordian, Student, Professor, TA
+    '%s.campus' % PROJECT_NAME, # Physical Plant
+    '%s.academics' % PROJECT_NAME, # Courses without registration (which requires people)
+    '%s.store' % PROJECT_NAME, # ECA merchandise
+    '%s.profile' % PROJECT_NAME, # Concordian, Student, Professor, TA
+    '%s.section' % PROJECT_NAME, # Course sections and scheduling
+
+    '%s.signup' % PROJECT_NAME, # Concordian, Student, Professor, TA
+    
+    '%s.society' % PROJECT_NAME, # Society pages and documentation
     '%s.attachment' % PROJECT_NAME, # File attachment infrastructure
     #'%s.magazine' % PROJECT_NAME, # CMS
     #'%s.forum' % PROJECT_NAME, # Threaded discussions
     #'%s.blog' % PROJECT_NAME, # Why not?
 )
 
-FIXTURES_DIRECTORIES = (
+FIXTURE_DIRS = (
 	'%s/fixtures/' % PROJECT_ROOT,
 )
 
@@ -176,6 +177,6 @@ ACCOUNT_ACTIVATION_DAYS = 7 # Give 'em a week
 
 # The profile automatically created for each Student
 AUTH_PROFILE_MODULE = 'concordia.Concordian'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 

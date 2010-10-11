@@ -78,7 +78,7 @@ body {
 	
 	background:white;
 }
-#pretitle {
+#pretitle, #subtitle {
 	font-family: Georgia, Times, serif;
 	font-style:italic;
 	font-size:small;
@@ -106,6 +106,26 @@ a:link, a:visited {
 }
 a:active, a:hover {
 	text-decoration:underline;
+}
+
+ul.menu {
+	margin:0; padding:0; border:0;
+	background: #ccc;
+	list-style-type: none;
+	height:18px;
+}
+ul.menu li {
+	display:inline;
+}
+ul.menu li a {
+	background: #eee;
+	padding:2px 4px;
+	border:1px solid #444;
+	margin-right:2px;
+}
+ul.menu li a:hover {
+	background: #444;
+	color:#eee;
 }
 
 

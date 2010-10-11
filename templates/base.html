@@ -53,6 +53,7 @@
 			{% if title %}<div id="content_title">
 				<h1>{{ title }}</h1>
 			</div><!-- content_title -->{% endif %}
+			{% if subtitle %}<div id="subtitle">{{ subtitle }}</div><!-- /#subtitle -->{% endif %}
 			{% block content %}{{ content|linebreaks|safe }}{% endblock content %}
 		</div>
 		{% if sidebar %}<div id="sidebar">{{ sidebar|safe }}</div><!-- /#sidebar -->{% endif %}

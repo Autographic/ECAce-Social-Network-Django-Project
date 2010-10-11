@@ -16,7 +16,7 @@ class LectureSection(models.Model):
 		max_length = 2,
 		help_text = "The letter (or two) that designates one section from another.",
 	)
-	classroom = models.ManyToManyField ( Classroom,
+	classroom = models.ForeignKey ( Classroom,
 		related_name = "lectures",
 		help_text = "The room this class is located in.",
 	)
@@ -38,7 +38,7 @@ class LabSection(models.Model):
 		max_length = 2,
 		help_text = "The letter (or two) that designates one section from another.",
 	)
-	classroom = models.ManyToManyField ( Classroom,
+	classroom = models.ForeignKey ( Classroom,
 		related_name = "labs",
 		help_text = "The room this class is located in.",
 	)
@@ -56,7 +56,7 @@ class TutorialSection(models.Model):
 		max_length = 2,
 		help_text = "The letter (or two) that designates one section from another.",
 	)
-	classroom = models.ManyToManyField ( Classroom,
+	classroom = models.ForeignKey ( Classroom,
 		related_name = "tutorials",
 		help_text = "The room this class is located in.",
 	)
@@ -77,6 +77,11 @@ class ClassSchedule(models.Model):
 	)
 	start = models.TimeField ()
 	end = models.TimeField ()
+	
+	def __unicode__(self):
+		wk = ''
+		if self.week_number: wk = '[%s]' % self.week_number
+		return "%s%s, %s-%s" % ( self.get_weekday_display(), wk, self.start, self.end )
 
 class LectureSchedule(ClassSchedule):
 	section = models.ForeignKey ( LectureSection,

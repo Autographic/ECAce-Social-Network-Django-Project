@@ -2,7 +2,7 @@
 <django-objects version="1.0">
 	<object pk="ENGR" model="academics.discipline">
 		<field type="CharField" name="name">Engineering</field>
-		<field to="academics.discipline" name="parent" rel="ManyToOneRel"><None></None></field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENCS</field>
 	</object>
 	<object pk="BCE" model="academics.discipline">
 		<field type="CharField" name="name">Building, Civil and Environmental Engineering</field>
@@ -10,11 +10,11 @@
 	</object>
 	<object pk="BLDG" model="academics.discipline">
 		<field type="CharField" name="name">Building Engineering</field>
-		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCE</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCEE</field>
 	</object>
 	<object pk="CIVI" model="academics.discipline">
 		<field type="CharField" name="name">Civil Engineering</field>
-		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCE</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">BCEE</field>
 	</object>
 	<object pk="ECE" model="academics.discipline">
 		<field type="CharField" name="name">Electrical and Computer Engineering</field>
@@ -52,6 +52,18 @@
 		<field type="CharField" name="name">Industrial Engineering</field>
 		<field to="academics.discipline" name="parent" rel="ManyToOneRel">MIE</field>
 	</object>
+	<object pk="ENCS" model="academics.discipline">
+		<field type="CharField" name="name">Engineering and Computer Science</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel"><None></None></field>
+	</object>
+	<object pk="BCEE" model="academics.discipline">
+		<field type="CharField" name="name">Building, Civil and Environmental Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ENGR</field>
+	</object>
+	<object pk="COEN" model="academics.discipline">
+		<field type="CharField" name="name">Computer Engineering</field>
+		<field to="academics.discipline" name="parent" rel="ManyToOneRel">ECE</field>
+	</object>
 	<object pk="1" model="academics.schoolyear">
 		<field type="PositiveSmallIntegerField" name="year">2010</field>
 	</object>
@@ -79,4 +91,1405 @@
 		<field type="DateField" name="exam_start">2011-04-11</field>
 		<field type="DateField" name="exam_end">2011-05-02</field>
 	</object>
-</django-objects>
+	<object pk="1" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENCS</field>
+		<field type="PositiveSmallIntegerField" name="number">282</field>
+		<field type="CharField" name="name">Technical Writing and Communication</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="2" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENCS</field>
+		<field type="PositiveSmallIntegerField" name="number">393</field>
+		<field type="CharField" name="name">Social and Ethical Dimensions of Information and Communication 
+Technologies</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="3" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENCS</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Engineering and Computer Science</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="4" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">201</field>
+		<field type="CharField" name="name">Professional Practice and Responsibility</field>
+		<field type="DecimalField" name="credits">1.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="5" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">213</field>
+		<field type="CharField" name="name">Applied Ordinary Differential Equations</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="6" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">233</field>
+		<field type="CharField" name="name">Applied Advanced Calculus</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="7" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">242</field>
+		<field type="CharField" name="name">Statics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="8" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">243</field>
+		<field type="CharField" name="name">Dynamics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="9" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">244</field>
+		<field type="CharField" name="name">Mechanics of Materials</field>
+		<field type="DecimalField" name="credits">3.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="10" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">245</field>
+		<field type="CharField" name="name">Mechanical Analysis</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="11" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">251</field>
+		<field type="CharField" name="name">Thermodynamics I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="12" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">361</field>
+		<field type="CharField" name="name">Fluid Mechanics I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="13" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">371</field>
+		<field type="CharField" name="name">Probability and Statistics in Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="14" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">391</field>
+		<field type="CharField" name="name">Numerical Methods in Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="15" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">392</field>
+		<field type="CharField" name="name">Impact of Technology on Society</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="16" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">410</field>
+		<field type="CharField" name="name">Technical Report</field>
+		<field type="DecimalField" name="credits">1.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="17" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">472</field>
+		<field type="CharField" name="name">Robot Manipulators</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="18" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ENGR</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="19" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">231</field>
+		<field type="CharField" name="name">Structured Programming and Applications for Building and Civil 
+Engineers</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="20" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">342</field>
+		<field type="CharField" name="name">Structural Analysis I</field>
+		<field type="DecimalField" name="credits">2.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="21" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">343</field>
+		<field type="CharField" name="name">Structural Analysis II</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="22" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">344</field>
+		<field type="CharField" name="name">Structural Design I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="23" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">345</field>
+		<field type="CharField" name="name">Structural Design II</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="24" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">451</field>
+		<field type="CharField" name="name">Construction Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="25" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">452</field>
+		<field type="CharField" name="name">Matrix Analysis of Structures</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="26" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BCEE</field>
+		<field type="PositiveSmallIntegerField" name="number">455</field>
+		<field type="CharField" name="name">Introduction to Structural Dynamics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="27" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">212</field>
+		<field type="CharField" name="name">Building Engineering Drawing</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="28" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">341</field>
+		<field type="CharField" name="name">Building Engineering Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="29" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">365</field>
+		<field type="CharField" name="name">Building Science</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="30" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">366</field>
+		<field type="CharField" name="name">Acoustics and Lighting</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="31" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">371</field>
+		<field type="CharField" name="name">Building Service Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="32" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">390</field>
+		<field type="CharField" name="name">Building Engineering Design Project</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="33" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">401</field>
+		<field type="CharField" name="name">Building Economics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="34" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">462</field>
+		<field type="CharField" name="name">Modern Building Materials</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="35" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">463</field>
+		<field type="CharField" name="name">Building Envelope Design</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="36" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">465</field>
+		<field type="CharField" name="name">Fire and Smoke Control in Buildings</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="37" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">471</field>
+		<field type="CharField" name="name">HVAC System Design</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="38" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">472</field>
+		<field type="CharField" name="name">Building Energy Conservation Technologies</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="39" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">473</field>
+		<field type="CharField" name="name">Building Acoustics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="40" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">474</field>
+		<field type="CharField" name="name">Building Illumination and Daylighting</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="41" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">475</field>
+		<field type="CharField" name="name">Indoor Air Quality</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="42" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">476</field>
+		<field type="CharField" name="name">Thermal Analysis of Buildings</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="43" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">477</field>
+		<field type="CharField" name="name">Control Systems in Buildings</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="44" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">478</field>
+		<field type="CharField" name="name">Project Management for Construction</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="45" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">492</field>
+		<field type="CharField" name="name">Construction Processes</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="46" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">493</field>
+		<field type="CharField" name="name">Legal Issues in Construction</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="47" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">BLDG</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Building Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="48" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">212</field>
+		<field type="CharField" name="name">Civil Engineering Drawing</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="49" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">231</field>
+		<field type="CharField" name="name">Geology</field>
+		<field type="DecimalField" name="credits">2.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="50" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">321</field>
+		<field type="CharField" name="name">Engineering Materials</field>
+		<field type="DecimalField" name="credits">3.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="51" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">341</field>
+		<field type="CharField" name="name">Civil Engineering Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="52" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">361</field>
+		<field type="CharField" name="name">Introduction to Environmental Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="53" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">372</field>
+		<field type="CharField" name="name">Transportation Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="54" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">381</field>
+		<field type="CharField" name="name">Hydraulics</field>
+		<field type="DecimalField" name="credits">3.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="55" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">382</field>
+		<field type="CharField" name="name">Water Resources Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="56" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">390</field>
+		<field type="CharField" name="name">Civil Engineering Design Project</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="57" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">432</field>
+		<field type="CharField" name="name">Soil Mechanics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="58" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">435</field>
+		<field type="CharField" name="name">Foundation Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="59" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">437</field>
+		<field type="CharField" name="name">Advanced Geotechnical Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="60" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">453</field>
+		<field type="CharField" name="name">Design of Reinforced Concrete Structures</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="61" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">454</field>
+		<field type="CharField" name="name">Design of Steel Structures</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="62" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">464</field>
+		<field type="CharField" name="name">Environmental Impact Assessment</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="63" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">465</field>
+		<field type="CharField" name="name">Water Pollution and Control</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="64" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">467</field>
+		<field type="CharField" name="name">Air Pollution and Emission Control</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="65" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">468</field>
+		<field type="CharField" name="name">Waste Management</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="66" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">469</field>
+		<field type="CharField" name="name">Geo-Environmental Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="67" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">471</field>
+		<field type="CharField" name="name">Highway and Pavement Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="68" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">474</field>
+		<field type="CharField" name="name">Transportation Planning and Design</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="69" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">483</field>
+		<field type="CharField" name="name">Hydrology</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="70" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">484</field>
+		<field type="CharField" name="name">Hydraulic Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="71" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">490</field>
+		<field type="CharField" name="name">Capstone Civil Engineering Design Project</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="72" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">CIVI</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Civil Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="73" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">231</field>
+		<field type="CharField" name="name">Introduction to Discrete Mathematics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="74" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">243</field>
+		<field type="CharField" name="name">Programming Methodology I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="75" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">244</field>
+		<field type="CharField" name="name">Programming Methodology II</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="76" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">311</field>
+		<field type="CharField" name="name">Computer Organization and Software</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="77" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">312</field>
+		<field type="CharField" name="name">Digital Systems Design I</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="78" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">313</field>
+		<field type="CharField" name="name">Digital Systems Design II</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="79" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">315</field>
+		<field type="CharField" name="name">Digital Electronics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="80" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">316</field>
+		<field type="CharField" name="name">Computer Architecture and Design</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="81" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">317</field>
+		<field type="CharField" name="name">Microprocessor Systems</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="82" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">320</field>
+		<field type="CharField" name="name">Introduction to Real-Time Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="83" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">345</field>
+		<field type="CharField" name="name">Software Testing and Validation</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="84" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">390</field>
+		<field type="CharField" name="name">Computer Engineering Team Design Project</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="85" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">421</field>
+		<field type="CharField" name="name">Embedded Systems and Software Design</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="86" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">432</field>
+		<field type="CharField" name="name">Applied Genetic and Evolutionary Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="87" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">445</field>
+		<field type="CharField" name="name">Communication Networks and Protocols</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="88" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">451</field>
+		<field type="CharField" name="name">VLSI Circuit Design</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="89" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">490</field>
+		<field type="CharField" name="name">Capstone Computer Engineering Design Project</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="90" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">COEN</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Computer Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="91" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">251</field>
+		<field type="CharField" name="name">Fundamentals of Applied Electromagnetics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="92" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">264</field>
+		<field type="CharField" name="name">Signals and Systems I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="93" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">273</field>
+		<field type="CharField" name="name">Basic Circuit Analysis</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="94" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">275</field>
+		<field type="CharField" name="name">Principles of Electrical Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="95" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">311</field>
+		<field type="CharField" name="name">Electronics I</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="96" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">312</field>
+		<field type="CharField" name="name">Electronics II</field>
+		<field type="DecimalField" name="credits">4.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="97" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">351</field>
+		<field type="CharField" name="name">Electromagnetic Waves and Guiding Structures</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="98" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">361</field>
+		<field type="CharField" name="name">Signals and Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="99" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">362</field>
+		<field type="CharField" name="name">Partial Differential Equations</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="100" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">363</field>
+		<field type="CharField" name="name">Fundamentals of Telecommunications Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="101" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">364</field>
+		<field type="CharField" name="name">Signals and Systems II</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="102" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">370</field>
+		<field type="CharField" name="name">Modelling and Analysis of Physical Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="103" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">372</field>
+		<field type="CharField" name="name">Fundamentals of Control Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="104" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">390</field>
+		<field type="CharField" name="name">Electrical Engineering Team Design Project</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="105" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">421</field>
+		<field type="CharField" name="name">Solid State Devices</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="106" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">424</field>
+		<field type="CharField" name="name">VLSI Process Technology</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="107" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">430</field>
+		<field type="CharField" name="name">Electrical Power Equipment</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="108" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">431</field>
+		<field type="CharField" name="name">Electrical Power Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="109" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">433</field>
+		<field type="CharField" name="name">Power Electronics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="110" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">434</field>
+		<field type="CharField" name="name">Behaviour of Power Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="111" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">436</field>
+		<field type="CharField" name="name">Protection of Power Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="112" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">438</field>
+		<field type="CharField" name="name">Industrial Electrical Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="113" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">441</field>
+		<field type="CharField" name="name">Modern Analog Filter Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="114" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">442</field>
+		<field type="CharField" name="name">Digital Signal Processing</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="115" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">453</field>
+		<field type="CharField" name="name">Microwave Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="116" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">455</field>
+		<field type="CharField" name="name">Acoustics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="117" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">456</field>
+		<field type="CharField" name="name">Antennas</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="118" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">462</field>
+		<field type="CharField" name="name">Digital Communications</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="119" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">463</field>
+		<field type="CharField" name="name">Telecommunication Networks</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="120" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">464</field>
+		<field type="CharField" name="name">Wireless Communications</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="121" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">465</field>
+		<field type="CharField" name="name">Networks Security and Management</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="122" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">481</field>
+		<field type="CharField" name="name">Linear Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="123" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">482</field>
+		<field type="CharField" name="name">System Optimization</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="124" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">ELEC</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Electrical Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="125" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">311</field>
+		<field type="CharField" name="name">Simulation of Industrial Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="126" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">320</field>
+		<field type="CharField" name="name">Production Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="127" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">321</field>
+		<field type="CharField" name="name">Lean Manufacturing</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="128" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">323</field>
+		<field type="CharField" name="name">Operations Research I</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="129" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">324</field>
+		<field type="CharField" name="name">Operations Research II</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="130" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">330</field>
+		<field type="CharField" name="name">Engineering Management</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="131" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">371</field>
+		<field type="CharField" name="name">Stochastic Models in Industrial Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="132" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">372</field>
+		<field type="CharField" name="name">Quality Control and Reliability</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="133" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">411</field>
+		<field type="CharField" name="name">Computer Integrated Manufacturing</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="134" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">412</field>
+		<field type="CharField" name="name">Human Factors Engineering</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="135" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">423</field>
+		<field type="CharField" name="name">Inventory Control</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="136" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">440</field>
+		<field type="CharField" name="name">Product Design and Development</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="137" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">466</field>
+		<field type="CharField" name="name">Decision Models in Service Sector</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="138" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">475</field>
+		<field type="CharField" name="name">Advanced Concepts in Quality Improvement</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="139" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">INDU</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Industrial Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="140" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">211</field>
+		<field type="CharField" name="name">Mechanical Engineering Drawing</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="141" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">221</field>
+		<field type="CharField" name="name">Materials Science</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="142" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">311</field>
+		<field type="CharField" name="name">Manufacturing Processes</field>
+		<field type="DecimalField" name="credits">3.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="143" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">313</field>
+		<field type="CharField" name="name">Machine Drawing and Design</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="144" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">321</field>
+		<field type="CharField" name="name">Properties and Failure of Materials</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="145" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">343</field>
+		<field type="CharField" name="name">Theory of Machines</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="146" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">351</field>
+		<field type="CharField" name="name">Thermodynamics II</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="147" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">352</field>
+		<field type="CharField" name="name">Heat Transfer I</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="148" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">361</field>
+		<field type="CharField" name="name">Fluid Mechanics II</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="149" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">373</field>
+		<field type="CharField" name="name">Instrumentation and Measurements</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="150" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">375</field>
+		<field type="CharField" name="name">Mechanical Vibrations</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="151" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">390</field>
+		<field type="CharField" name="name">Mechanical Engineering Design Project</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="152" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">412</field>
+		<field type="CharField" name="name">Computer-Aided Mechanical Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="153" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">424</field>
+		<field type="CharField" name="name">MEMS — Design and Fabrication</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="154" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">425</field>
+		<field type="CharField" name="name">Manufacturing of Composites</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="155" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">426</field>
+		<field type="CharField" name="name">Stress and Failure Analysis of Machinery</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="156" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">431</field>
+		<field type="CharField" name="name">Principles of Aeroelasticity</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="157" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">444</field>
+		<field type="CharField" name="name">Guided Vehicle Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="158" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">447</field>
+		<field type="CharField" name="name">Fundamentals of Vehicle System Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="159" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">448</field>
+		<field type="CharField" name="name">Vehicle Dynamics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="160" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">452</field>
+		<field type="CharField" name="name">Heat Transfer II</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="161" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">454</field>
+		<field type="CharField" name="name">Vehicular Internal Combustion Engines</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="162" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">460</field>
+		<field type="CharField" name="name">Finite Element Analysis</field>
+		<field type="DecimalField" name="credits">3.75</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="163" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">461</field>
+		<field type="CharField" name="name">Gas Dynamics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="164" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">462</field>
+		<field type="CharField" name="name">Turbomachinery and Propulsion</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="165" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">463</field>
+		<field type="CharField" name="name">Fluid Power Control</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="166" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">464</field>
+		<field type="CharField" name="name">Aerodynamics</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="167" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">465</field>
+		<field type="CharField" name="name">Gas Turbine Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="168" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">470</field>
+		<field type="CharField" name="name">Industrial Electronics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="169" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">471</field>
+		<field type="CharField" name="name">Microcontrollers for Mechatronics</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="170" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">472</field>
+		<field type="CharField" name="name">Mechatronics and Automation</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="171" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">473</field>
+		<field type="CharField" name="name">Control System Design</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="172" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">480</field>
+		<field type="CharField" name="name">Flight Control Systems</field>
+		<field type="DecimalField" name="credits">3.50</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="173" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">481</field>
+		<field type="CharField" name="name">Materials Engineering for Aerospace</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="174" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">482</field>
+		<field type="CharField" name="name">Avionic Navigation Systems</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object>
+	<object pk="175" model="academics.course">
+		<field to="academics.schoolyear" name="year" rel="ManyToOneRel">1</field>
+		<field to="academics.discipline" name="discipline" rel="ManyToOneRel">MECH</field>
+		<field type="PositiveSmallIntegerField" name="number">498</field>
+		<field type="CharField" name="name">Topics in Mechanical Engineering</field>
+		<field type="DecimalField" name="credits">3.00</field>
+		<field type="DateField" name="final_exam_date"><None></None></field>
+	</object></django-objects>

@@ -1,9 +1,22 @@
+import re
+
 SEMESTERS = ((1,'Summer'),(2,'Fall'),(3,'Fall/Winter'),(4,'Winter'),)
 def semester_code(name):
 	for semester in SEMESTERS:
 		if name.lower()==semester[1].lower():return semester[0]
 
 CAMPUSES = (('SGW','Sir George Williams (Downtown)'),('LOY','Loyola Campus'))
+
+# Program Loader config
+# 
+COURSE_HTML_HOST = r'registrar.concordia.ca'
+COURSE_HTML_PATH = r'/calendar/71/71.60.html'
+COURSE_HTML_URL = 'http://%s%s' % ( COURSE_HTML_HOST, COURSE_HTML_PATH )
+
+COURSEYEAR_PATTERN = re.compile(r'Undergraduate Calendar (\d{4})-(\d{4}) - Concordia University')
+COURSEDATA_PATTERN = re.compile(r'<b>(?P<code>[A-Z]{4}) (?P<number>\d{3})<i> ([^<]+)</i></b> \((\d\.?\d*) credits\)')
+
+
 
 
 # ENCS Programs

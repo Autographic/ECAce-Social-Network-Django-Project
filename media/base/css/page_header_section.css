@@ -83,6 +83,7 @@
 	padding:2px 1pc;
 	background:white url("img/breadcrumbs_bkg.png") repeat-x;;
 	border-bottom: 1px solid #444;
+	font-size:9pt;
 }
 #server_messages {
 	margin:0 1pc 6pt;

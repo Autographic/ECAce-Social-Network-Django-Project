@@ -1,12 +1,23 @@
 {% extends "course/base.html" %}
 
 {% block content %}
+<h4>Filter by kind</h4>
+<ul class="menu">
+	<li><a href="/course/">Show All</a></li>
+{% for d in disciplines %}{% if d.courses.count %}
+	<li><a href="/course/{{ d.code }}/">{{ d.code }}</a></li>
+{% endif %}{% endfor %}
+</ul>
+
+<br class="clear" />
+
+<h3>{{ course_count }} courses found.</h3>
 <table>
 <tr valign="top">
-{% for col in courses %}
-<td>
-{% for course in col %}
-<div>{{ course }}</div>
+{% for column in columns %}
+<td width="25%">
+{% for course in column %}{% if is_new_section %}<h3><a href="course/{% firstof discipline.code course.discipline.code %}/">{% firstof discipline.code course.discipline.code %}</a></h3>{% endif %}
+<div class="course"><h4><a class="course_code" name="{{ course.slug }}" href="/course/{{ course.slug }}/">{{ course.course_code }}</a> <span class="title">{{ course.name }}</span></h4></div>
 {% endfor %}
 </td>
 {% endfor %}

@@ -1,4 +1,4 @@
-from models import HumanBeing, HumanName, NameFragment
+from models import HumanBeing, HumanName
 from constants import *
 from django.test import TestCase
 import datetime

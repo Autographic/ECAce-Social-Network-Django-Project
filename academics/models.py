@@ -20,7 +20,7 @@ class Discipline(models.Model):
 		help_text = "Define a tree of disciplines here.",
 		null=True, blank=True,
 	)
-	def __unicode__(self): return self.name.capitalize()
+	def __unicode__(self): return self.name
 
 class SchoolYear(models.Model):
 	year = models.PositiveSmallIntegerField (
@@ -32,10 +32,29 @@ class SchoolYear(models.Model):
 		return u'School Year %d' % self.year
 	
 	@classmethod
+	def nominal_year(cls, year_number):
+		try:
+			return cls.objects.get( year = year_number )
+		except cls.DoesNotExist: # This will VERY rarely run.
+			return cls.objects.create( year = year_number )
+		
+	@classmethod
 	def current(cls):
 		"Returns the current SchoolYear object."
-		return cls.objects.get( year = _get_current_school_year() )
+		t = datetime.date.today()
+		y = int(t.strftime("%Y"))
+		m = int(t.strftime("%m"))
+		if m < 9: y -= 1 #####################   very simple, until September it says the previous year.
+		return cls.nominal_year(y)
 
+	@classmethod
+	def upcoming(cls):
+		"Returns the next SchoolYear's object, but ONLY after January 1."
+		t = datetime.date.today()
+		y = int(t.strftime("%Y"))
+		m = int(t.strftime("%m"))
+		if m >= 9: y += 1 #####################   very simple, after September it says the next year.
+		return cls.nominal_year( y )
 
 class Semester(models.Model):
 	"""A division of the school year.
@@ -52,17 +71,20 @@ class Semester(models.Model):
 	year = models.ForeignKey( SchoolYear,
 		related_name = 'semesters',
 	)
-	semester_code = models.PositiveSmallIntegerField(
-		choices = SEMESTERS,
-		help_text = "The name of the semester in the templates is, e.g., {{ course.get_semester_display }}."
+	semester_code = models.PositiveSmallIntegerField( choices = SEMESTERS, )
+	start = models.DateField( help_text = "The first day of class.", )
+	end = models.DateField(	help_text = "The last day of class.", )
+	exam_start = models.DateField(
+		help_text = "The first day of final exams.",
+		blank = True, null = True,
 	)
-	start = models.DateField(
-		help_text = "The first day of class.",
-	)
-	end = models.DateField(
-		help_text = "The last day of class.",
+	exam_end = models.DateField(
+		help_text = "The last day of final exams.",
+		blank = True, null = True,
 	)
 	
+	@property
+	def name(self): return unicode(self)
 	
 	@property
 	def class_week ( self, which_date = datetime.date.today() ):
@@ -89,6 +111,7 @@ class Course(models.Model):
 	)
 	discipline = models.ForeignKey( Discipline,
 		help_text = "The 4-letter code of the course, e.g. ENCS for ENCS282.",
+		related_name = "courses",
 	)
 	number = models.PositiveSmallIntegerField (
 		help_text = "The 3-digit course code, e.g. 282 for ENCS282."
@@ -121,7 +144,7 @@ class Course(models.Model):
 	
 	@property
 	def sections_by_semester(self):
-		secs = self.sections.order_by("-year","-semester")
+		return self.sections.order_by("-year","-semester")
 	
 	@classmethod
 	def get_course(cls, code, number, year):
@@ -134,8 +157,12 @@ class Course(models.Model):
 ##### Tying together courses, semesters and sections
 class CourseSemester(models.Model):
 	"Courses offered in given semesters"
-	course = models.ForeignKey ( Course, )
-	semester = models.ForeignKey ( Semester, )
+	course = models.ForeignKey ( Course, 
+		related_name = 'semesters_offered',
+	)
+	semester = models.ForeignKey ( Semester, 
+		related_name = 'courses_offered',
+	)
 	# lecture_sections ->
 	
 	def __unicode__(self):

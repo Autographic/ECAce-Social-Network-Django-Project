@@ -18,12 +18,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 def view_own(request):
 	"Profile viewer"
+	print request.user
 	return view(request,user=request.user)
 
 def view(request, username=None, user=None ):
 	"Profile viewer"
 	if username:
-		user = User.objects.get(username)
+		user = User.objects.get(username=username)
 	else:
 		assert(user)
 		

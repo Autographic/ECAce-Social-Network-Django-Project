@@ -19,10 +19,10 @@ def course_index(request):
 	"ENCS Course listing"
 	c = RequestContext(request)
 	year = SchoolYear.current()
-	courses = year.courses_this_year.order_by('code','number')
+	courses = Course.objects.filter(year=year).order_by('discipline__code','number')
 	c['year'] = year
-	c['title'] = 'ENCS Course List' 
-	c['subtitle'] = "Courses offered for the %s" % year
+	c['title'] = 'Full Course List' 
+	c['pretitle'] = "Courses offered for %s" % year
 	return _show_courses(request,courses,c)
 
 def course_by_discipline(request, discipline):
@@ -30,10 +30,10 @@ def course_by_discipline(request, discipline):
 	c = RequestContext(request)
 	disc = get_object_or_404(Discipline, code__iexact=discipline )
 	year = SchoolYear.current()
-	courses = year.courses_this_year.filter(discipline=disc).order_by('code','number')
+	courses = Course.objects.filter(discipline=disc,year=year).order_by('number')
 	c['year'] = year
-	c['title'] = 'ENCS Course List' 
-	c['subtitle'] = "Courses offered for the %s" % year
+	c['title'] = '%s Course List' % disc.name
+	c['pretitle'] = "Courses offered for %s" % year
 	return _show_courses(request,courses,c)
 
 def _show_courses(request,courses,context):
@@ -45,10 +45,37 @@ def _show_courses(request,courses,context):
 	counts = [ length for i in range(COLUMNS) ]
 	for i in range(ct%4):
 		counts[i] += 1
-	c['courses'] = []
+	columns = []
 	where = 0
 	for ct in counts:
-		c['courses'].append(counts[where:where+ct])
+		batch = courses[where:where+ct]
+		columns.append( batch )
 		where += ct
+	'''
+	for col in columns:
+		current_discipline = None # Always head columns with headers
+		for course in col:
+			is_new_section = False
+			if not current_discipline or current_discipline != course.discipline:
+				current_discipline = course.discipline
+				is_new_section = True
+			course.annotate( is_new_section = is_new_section )
+	'''	
+	
+	c['disciplines'] = Discipline.objects.order_by('code')
+	
+	c['columns'] = columns 
+	
 	return render_to_response('course/index.html', context_instance=c )
+
+
+def course_view(request, discipline, number):
+	"ENCS Course listing"
+	c = RequestContext(request)
+	disc = get_object_or_404(Discipline, code__iexact=discipline )
+	course = get_object_or_404(Course, discipline=disc, number=number )
+	c['title'] = course.name
+	c['discipline'] = disc
+	c['course'] = course
+	return render_to_response('course/view.html', context_instance=c )
 

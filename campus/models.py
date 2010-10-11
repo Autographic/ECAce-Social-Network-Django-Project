@@ -1,5 +1,10 @@
 from django.db import models
 
+CAMPUSES = (
+	('SGW','Sir George Williams'),
+	('LOY','Loyola'),
+)
+
 class Campus(models.Model):
 	code = models.CharField (
 		primary_key = True,
@@ -19,6 +24,9 @@ class Campus(models.Model):
 	
 	def __unicode__(self):
 		return self.name
+	
+	class Meta:
+		verbose_name_plural = 'campuses'
 
 
 class Building(models.Model):
